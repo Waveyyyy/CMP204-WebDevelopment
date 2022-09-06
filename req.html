@@ -1,0 +1,164 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Requirements page</title>
+  <link rel="stylesheet" href="assets/css/reqStyle.css">
+</head>
+<body>
+
+<h1>CMP204 Requirements Page - Unit 2 Assessment</h1>
+
+<p>If you have not met a requirement, do not delete it from the table.</p>
+
+<table>
+  <thead>
+  <tr>
+    <th class="reqCol">Requirement</th>
+    <th class="metCol">How did you meet this requirement?</th>
+    <th class="fileCol">File name(s), line no.</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr>
+    <td>HTML, CSS, JavaScript has been contained within separate files.</td>
+    <td>HTML, CSS, JavaScript have all been contained within seperate files and are linked to eachother within HTML head elements</td>
+    <td>Demonstrated throughout the site</td>
+  </tr>
+
+  <tr>
+    <td>A clear use of HTML5.</td>
+    <td>This web application makes use of the HTML5 specific &#60;header&#62; and <&#60;footer&#62; tags </td>
+    <td>Demonstrated throughout the site</td>
+  </tr>
+  <tr>
+    <td>Use of the Bootstrap framework providing a responsive layout.</td>
+    <td>Each page makes heavy use of the bootstrap framework, namely the grid system, a bootstrap carousel has been implemented on the about page and a bootstrap navbar is used on every page</td>
+    <td>Demonstrated throughout the site</td>
+  </tr>
+  <tr>
+    <td>Use of JavaScript to manipulate the DOM based on an event.</td>
+    <td>Javascript has been used to manipulate the dom on the music.php page, there is a carousel of the album art and spotify iframe, that changes when the user clicks a forward or backwards button(onclick event)</td>
+    <td>albumDisplay - setAttributes function, line 46 - 52<br>music.php - lines - 36, 39</td>
+  </tr>
+  <tr>
+    <td>Use of jQuery in conjunction with the DOM.</td>
+    <td>on the page account.php jQuery is used to (dependinng on which option is chosen) dynamically change which account information change form is displayed</td>
+    <td>usrAccountMod.js - entire file<br>account.php - lines 73, 79, 85</td>
+  </tr>
+  <tr>
+    <td>Use of AJAX (pure JavaScript i.e. without the use of a library).</td>
+    <td>raw javascrupt AJAX is used on index.php to pull the description for each of the featured albums that are displayed</td>
+    <td>featuredAlbums.js - line 111 - 123<br>music.php - lines - 50, 68, 86</td>
+  </tr>
+  <tr>
+    <td>Use of the jQuery AJAX function.</td>
+    <td>jQuery AJAX is used on the about.php page to display the about text</td>
+    <td>displayAbout.js - entire file</td>
+  </tr>
+  <tr>
+    <td>User login functionality (PHP/MySQL).</td>
+    <td>once a user has created their account they are then redirected to the login page and prompted to sign in, where their username and password are input and sent to the login-action.php script which validates credentials and strips dangerous characters before moving into a series of nested if statements which binds these inputs to a prepared SQL statement, if the credentials match that of an entry in the database the user is logged in and a session is created allowing the user to stay logged in</td>
+    <td> login-action.php specifically line 31 onwards for login functionality</td>
+  </tr>
+  <tr>
+    <td>Ability to select (SELECT), add (INSERT), edit (UPDATE) and delete (DELETE) information from a database (PHP/MySQL).</td>
+    <td>
+      SELECT - The site's login functionality makes use of SQL's SELECT statement
+      <br>
+      INSERT - The site makes use of the INSERT SQL statement when a user registers
+      <br>
+      UPDATE - The user is able to change their account information, this makes use of the SQL UPDATE statement
+      <br>
+      DELETE - The user is able to delete their account, this makes use of the SQL DELETE statement
+    </td>
+    <td>
+      SELECT - login-action.php (line 29 for SQL SELECT statement usage)
+      <br>
+      INSERT - signup-action.php (line 45 for SQL INSERT statement usage)
+      <br>
+      UPDATE - changeEmail-action.php (line 29 for UPDATE statement usage) , changePass-action.php (line 32 for UPDATE statement usage), changeUsrname-action.php (line 28 for UPDATE statement usage
+      <br>
+      DELETE - remove-account.php (line 21 for DELETE statement usage)
+    </td>
+  </tr>
+  <tr>
+    <td>Consideration of GDPR and the Cookie Law.</td>
+    <td>
+      Every image tag present on this site makes use of alt tags, in compliance with the Disability Discrimination act.
+      <br>
+      The site makes use of cookies to store a user's session and allow them to remain logged in, cookies are also used to stop the user from repeatedly seeing the cookie popup.
+      <br>
+      A privacy policy has been written, roughly in line with the General Data Protection Regulation act template given. Only difference being that data is not used outwith the site, only php session tokens. The only information gathered on any given user is their email address.
+      <br>
+    </td>
+    <td>
+      every image tag
+      <br>
+      cookieConsent.js
+      <br>
+      privacyPol.php
+    </td>
+  </tr>
+  <tr>
+    <td>SQL queries written as prepared statements.</td>
+    <td>In files which contain SQL statements the connection variable $con is defined with mysqli_connect which gets database credentials passed in, the mysqli_prepare function is used to prepare SQL statements for execution, taking in parameters of the query (which uses ? to express where input will go) and $con mentioned earlier</td>
+    <td>
+      signup-action.php - line 32 - end
+      <br>
+      login-action.php - line 21 - end
+      <br>
+      changeEmail-action.php - line 21 - end
+      <br>
+      changePass-action.php - line 21 - end
+      <br>
+      changeUsrname-action.php - line 20 - end
+      <br>
+    </td>
+  </tr>
+  <tr>
+    <td>Passwords should be salted and hashed.</td>
+    <td>The PHP function password_hash is used with the PASSWORD_BCRYPT algorithm to salt and hash passwords, a salt is generated by default using the bcrypt algorithm. password_verify is used and performs the same hashing function and also compares the value of user input, after hashing with the hashed password in the database</td>
+    <td>
+      signup-action.php - line 28
+      <br>
+      login-action.php - line 29
+      <br>
+      changePass-action.php - line 15
+    </td>
+  </tr>
+  <tr>
+    <td>User input is sanitised.</td>
+    <td>
+      A php file called validations.php contains all the validations for each user input field such as, username, password, email and the confirmed password, these are then used in each *-action.php file that recieves any user input
+      <br>
+      Each validation checks if an input is empty, if so it throws a relevant error. If the input is not empty a user defined strip function is used to remove some special chars. this is done to avoid XSS and SQLi attacks
+      <br>
+      Using the filter_var() function the email input by the user is checked.
+      <br>
+      A regular expression is used to check whether the password matches the required password layout (making use of the preg_match function in PHP)
+      <br>
+      The input from the password and password confirm fields are compared and if they dont match a relevant error is thrown
+    </td>
+    <td>
+      signup-action.php - line 11-14
+      <br>
+      login-action.php - line 9-10
+      <br>
+      changeEmail-action.php - line 11
+      <br>
+      changePass-action.php - line 11
+      <br>
+      change-Usrname-action.php - line 11
+    </td>
+  </tr>
+  </tbody>
+
+
+
+</table>
+
+</body>
+</html>
